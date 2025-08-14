@@ -1,41 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahabbard <ahabbard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/13 17:38:12 by ahabbard          #+#    #+#             */
-/*   Updated: 2025/08/14 18:59:39 by ahabbard         ###   ########.fr       */
+/*   Created: 2025/08/14 13:44:33 by ahabbard          #+#    #+#             */
+/*   Updated: 2025/08/14 18:43:19 by ahabbard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include <unistd.h>
 
-char	*ft_strcat(char *dest, const char *src)
+void	*ft_strstr(char *haysatck, char *needle)
 {
-	int	i;
-	int	j;
+	int		i;
+	char	*ptr_needle;
 
 	i = 0;
-	j = 0;
-	while (dest[i])
-		i++;
-	while (src[j])
+	ptr_needle = needle;
+	while (*haysatck && *ptr_needle)
 	{
-		dest[i + j] = src[j];
-		j++;
+		while (haysatck[i] == *ptr_needle && *ptr_needle)
+		{
+			i++;
+			ptr_needle++;
+		}
+		if (*ptr_needle)
+		{
+			haysatck++;
+			ptr_needle = needle;
+			i = 0;
+		}
 	}
-	dest[i + j] = '\0';
-	return (dest);
+	return (haysatck);
 }
 
-/* 
-int	main(void)
-{
-	const char *src = " to hell\n";
-	char dest[15] = "Highway";
-
-	write(1, ft_strcat(dest, src), 16);
-	return (0);
-} */
+// int	main(void)
+// {
+// 	char str1[7] = "AA3bbA\0";
+// 	char str2[4] = "b\0";
+// 	write(1, ft_strstr(str1, str2), 5);
+// }
